@@ -1,60 +1,3 @@
-// using UnityEngine;
-// using System.Collections.Generic;
-
-// public enum InteractionTool
-// {
-//     MoveRotate,
-//     Delete,
-//     Duplicate,
-//     ColorPicker,
-//     Spawn // New Mode
-// }
-
-// public class InteractionToolManager : MonoBehaviour
-// {
-//     public static InteractionToolManager Instance;
-
-//     [Header("Current State")]
-//     [SerializeField] private InteractionTool currentTool = InteractionTool.MoveRotate;
-    
-//     [Header("Spawn Settings")]
-//     public List<GameObject> prefabLibrary; // Drag your spawnable prefabs (Chairs, Tables) here
-//     private GameObject prefabToSpawn;
-
-//     [Header("Color Settings")]
-//     public Color paintColor = Color.red;
-
-//     public InteractionTool CurrentTool => currentTool;
-//     public GameObject PrefabToSpawn => prefabToSpawn;
-
-//     private void Awake()
-//     {
-//         if (Instance == null) Instance = this;
-//         else Destroy(gameObject);
-//     }
-
-//     public void SetTool(InteractionTool tool)
-//     {
-//         currentTool = tool;
-//         Debug.Log($"Tool Switched to: {tool}");
-//     }
-
-//     // Call this from your UI Button
-//     public void SelectPrefabToSpawn(int index)
-//     {
-//         if (index >= 0 && index < prefabLibrary.Count)
-//         {
-//             prefabToSpawn = prefabLibrary[index];
-//             SetTool(InteractionTool.Spawn);
-//         }
-//     }
-
-//     public void SetToolByInt(int toolIndex)
-//     {
-//         // Casts the simple number (0, 1, 2) to the complex Enum tool
-//         SetTool((InteractionTool)toolIndex);
-//     }
-// } 
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -103,9 +46,7 @@ public class InteractionToolManager : MonoBehaviour
         UpdateMenuVisibility();
     }
 
-    // --- MAIN API ---
-
-    // CALL THIS from Buttons: Move(0), Delete(1), Duplicate(2), Color(3), Spawn(4)
+    // Button funcs: Move(0), Delete(1), Duplicate(2), Color(3), Spawn(4)
     public void SetToolByInt(int toolIndex)
     {
         currentTool = (InteractionTool)toolIndex;
@@ -113,7 +54,7 @@ public class InteractionToolManager : MonoBehaviour
         UpdateMenuVisibility();
     }
 
-    // CALL THIS from Color Sub-Menu Buttons: Red(0), Blue(1), etc.
+    // Button funcs: Color Sub-Menu Buttons: Red(0), Blue(1), etc.
     public void SetColorByIndex(int index)
     {
         if (index >= 0 && index < colorPalette.Count)
@@ -123,7 +64,7 @@ public class InteractionToolManager : MonoBehaviour
         }
     }
 
-    // CALL THIS from Spawn Sub-Menu Buttons: Chair(0), Table(1), etc.
+    // Button funcs: Spawn Sub-Menu Buttons: Chair(0), Table(1), etc.
     public void SetPrefabByIndex(int index)
     {
         if (index >= 0 && index < prefabLibrary.Count)
@@ -139,7 +80,6 @@ public class InteractionToolManager : MonoBehaviour
         SetToolByInt((int)InteractionTool.MoveRotate);
     }
 
-    // --- INTERNAL LOGIC ---
     private void UpdateMenuVisibility()
     {
         // 1. Hide everything first

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class HandMenuController : MonoBehaviour
 {
-    [SerializeField] private OVRHand leftHand; // Assign LEFT OVRHand
-    [SerializeField] private GameObject menuCanvas; // Drag your World Space Canvas
-    [SerializeField] private Vector3 offset = new Vector3(0, 0.15f, 0.05f); // Offset above palm
+    [SerializeField] private OVRHand leftHand; 
+    [SerializeField] private GameObject menuCanvas;
+    [SerializeField] private Vector3 offset = new Vector3(0, 0.15f, 0.05f); 
 
     private bool isMenuVisible = false;
     private bool wasPinching = false;
